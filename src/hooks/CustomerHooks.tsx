@@ -9,4 +9,11 @@ const useFetchCustomers =()=>{
         (resp)=>resp.data)
     );
 }
+const useFetchCustomer =(id:number)=>{
+    return useQuery<Customer,AxiosError>("customers", ()=>
+    axios.get(`${config.baseApiUrl}/Customer/${id}`).then(
+        (resp)=>resp.data)
+    );
+}
 export default useFetchCustomers;
+export  {useFetchCustomer};

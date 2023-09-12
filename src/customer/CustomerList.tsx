@@ -1,8 +1,10 @@
 import React from "react";
 import useFetchCustomers from "../hooks/CustomerHooks";
 import ApiStatus from "../ApiStatus";
+import { useNavigate } from "react-router-dom";
 
 const CustomerList =()=>{
+    const nav=useNavigate();
     const {data, status, isSuccess}=useFetchCustomers();
 
     if(!isSuccess)
@@ -22,14 +24,14 @@ const CustomerList =()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {data&&data.map((c)=>(
-                        <tr key={c.id}>
+                    {data&& data.length? data.map((c) =>(
+                        <tr key={c.id} onClick={()=> nav(`/Customer/${c.id}`)}>
                             <td>{c.name}</td>
                             <td>{c.email}</td>
                             <td>{c.phone}</td>
                             <td>{c.address}</td>
                         </tr>
-                    ))}
+                    )):<p>No Customer found</p>}
                 </tbody>
             </table>
         </div>
