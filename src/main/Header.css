@@ -1,0 +1,21 @@
+.header-style{
+    background-color:#333; 
+    color: #fff;
+    padding: "10px 0"; 
+    text-align: "center"; 
+    font-size: "24px"; 
+    font-family: "cursive"; 
+  };
+
+  .button-style{
+    float: "right";
+    margin-top: "10px";
+  };
+
+  .header-image{
+    /* Adjust the width to make the image smaller */
+    width: 20px; /* You can change this value to make the image smaller or larger */
+    margin-right: 20px;
+    height: 10px; /* Add margin to separate the image and text */
+  }
+  

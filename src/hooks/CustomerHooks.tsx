@@ -3,16 +3,24 @@ import { Customer } from "../types/customer";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useNavigate } from "react-router-dom";
+const getToken = () => {
+    return localStorage.getItem('jwtToken');
+  };
 
+  const axiosConfig = {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  };
 const useFetchCustomers = () => {
     return useQuery<Customer[], AxiosError>("customers", () =>
-        axios.get(`${config.baseApiUrl}/Customer`).then(
+        axios.get(`${config.baseApiUrl}/Customer`, axiosConfig).then(
             (resp) => resp.data)
     );
 }
 const useFetchCustomer = (id: string) => {
     return useQuery<Customer, AxiosError>("customers", () =>
-        axios.get(`${config.baseApiUrl}/Customer/${id}`).then(
+        axios.get(`${config.baseApiUrl}/Customer/${id}`, axiosConfig).then(
             (resp) => resp.data)
     );
 }
@@ -20,7 +28,7 @@ const useAddCustomer = () => {
     const nav = useNavigate();
     const queryClient = useQueryClient();
     return useMutation<AxiosResponse, AxiosError, Customer>(
-        (c) => axios.post(`${config.baseApiUrl}/Customer`, c),
+        (c) => axios.post(`${config.baseApiUrl}/Customer`, c, axiosConfig),
         {
             onSuccess: () => {
                 queryClient.invalidateQueries("customers");
@@ -40,7 +48,7 @@ const useUpdateCustomer = (id: string) => {
                 id: customer.id.toString(),
             };
 
-            return axios.put(`${config.baseApiUrl}/Customer/${customer.id}`, customerWithIdAsString);
+            return axios.put(`${config.baseApiUrl}/Customer/${customer.id}`, customerWithIdAsString, axiosConfig);
         },
         {
             onSuccess: (_, updatedCustomer) => {
@@ -59,7 +67,7 @@ const useDeleteCustomer = (id: number) => {
     const nav = useNavigate();    
     const queryClient = useQueryClient();
     return useMutation<AxiosResponse, AxiosError, Customer>(
-        (c) => axios.delete(`${config.baseApiUrl}/Customer/${id}`),
+        (c) => axios.delete(`${config.baseApiUrl}/Customer/${id}`, axiosConfig),
         {
             onSuccess: () => {
                 queryClient.removeQueries("customers");
