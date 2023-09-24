@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './main/App';
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.css';
+
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 import * as serviceWorker from './serviceWorker';
 import { QueryClient, QueryClientProvider } from 'react-query';
 

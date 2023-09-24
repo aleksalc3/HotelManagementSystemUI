@@ -1,5 +1,5 @@
 import React from "react";
-import './Header.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 type Args={
     subtitle:string;
     isLoggedIn: boolean; // Add a prop to indicate user's login status
@@ -7,40 +7,39 @@ type Args={
 }
 const Header = ({ subtitle, isLoggedIn, onLogout }: Args) => {
     
-    
+  const navbarStyle = {
+    backgroundColor: '#e3f2fd',
+  };
       
     
-      return (
-        <header className="header-style " >
-            <div className="navbar navbar-dark bg-dark shadow-sm">
-            
-        <div className="col-2"> {/* Adjust the column width as needed */}
-          <img src="https://static.vecteezy.com/system/resources/thumbnails/000/627/396/small/illust58-5847-01.jpg" alt="Your Image" className="img-fluid header-image" />
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={navbarStyle}>
+      <a className="navbar-brand" href="#">
+      <img src="https://img.favpng.com/22/5/6/hotel-icon-travel-icon-resort-icon-png-favpng-rfagdvVdPGBmg949s9h1wP1A8.jpg" width="35" height="35" className="d-inline-block align-top" alt="" />
+      Hotel Management System
+    </a>
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav">
+          
+          <a className="nav-item nav-link active" href="#">Home <span className="sr-only">(current)</span></a>
+          <button className="nav-item nav-link" >Bookings</button>
+          <a className="nav-item nav-link" href="#">Room</a>
+          <a className="nav-item nav-link" href="#">About</a>
         </div>
-  <div className="container">
-  <h1 className="mb-0">Hotel Management System</h1> {/* Improved title */}
-    <div className="row">
-    
-      
-    </div>
-    <div className="row">
-      <div className="col-12 mt-3">
-        <p>{subtitle}</p>
       </div>
-    </div>
-  </div>
-  <div className="row">
-        <div className="float-end">
-          {isLoggedIn && (
-            <button onClick={onLogout} className="btn btn-primary button-style">
+     
+      <form className="form-inline">
+      {isLoggedIn && (
+      <button onClick={onLogout} className="btn btn-secondary button-style">
               Logout
             </button>
-          )}
-        </div>
-      </div>
-  </div>
-</header>
-      );
+            )}
+  </form>
+    </nav>
+  );
   };
   
 export default Header;

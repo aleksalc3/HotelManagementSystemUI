@@ -22,8 +22,10 @@ function App() {
   
   return (
     <BrowserRouter>
-    
+    <div className="App">
     <Header subtitle="Please check your bookings" isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+    </div>
+    
     <div className='container'>
       <Routes>
         <Route path="/" element={isLoggedIn ? <Navigate to="/customer" /> : <LoginPage />} />   
