@@ -8,7 +8,10 @@ import CustomerDetails from '../customer/CustomerDetails';
 import CustomerAdd from '../customer/CustomerAdd';
 import CustomerEdit from '../customer/CustomerEdit';
 import LoginPage from './LoginPage';
-import { login } from '../services/authenticateService';
+import RoomList from '../room/RoomList';
+import RoomAdd from '../room/RoomAdd';
+import RoomDetails from '../room/RoomDetails';
+import RoomEdit from '../room/RoomEdit';
 
 function App() {
   
@@ -33,6 +36,10 @@ function App() {
         <Route path="/customer/add" element={isLoggedIn ? <CustomerAdd /> : <Navigate to="/" />} /> 
         <Route path="/customer/edit/:id" element={isLoggedIn ? <CustomerEdit /> : <Navigate to="/" />} /> 
         <Route path="/customer/:id" element={isLoggedIn ? <CustomerDetails /> : <Navigate to="/" />} /> 
+        <Route path="/room" element={isLoggedIn ? <RoomList /> : <Navigate to="/" />} /> 
+        <Route path="/room/add" element={isLoggedIn ? <RoomAdd /> : <Navigate to="/" />} /> 
+        <Route path="/room/edit/:id" element={isLoggedIn ? <RoomEdit /> : <Navigate to="/" />} /> 
+        <Route path="/room/:id" element={isLoggedIn ? <RoomDetails /> : <Navigate to="/" />} />
       </Routes>
     </div>
     </BrowserRouter>
